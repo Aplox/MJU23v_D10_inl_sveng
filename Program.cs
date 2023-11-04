@@ -25,7 +25,7 @@
                 string line = sr.ReadLine();
                 while (line != null)
                 {
-                    SweEngGloss gloss = new SweEngGloss(line);
+                    SweEngGloss gloss = new SweEngGloss(line.ToLower());
                     dictionary.Add(gloss);
                     line = sr.ReadLine();
                 }
@@ -143,7 +143,7 @@
                             {
                                 Console.WriteLine("Write word to be translated: ");
                                 string wordToBeTranslated = Console.ReadLine();
-                                translatefunc(wordToBeTranslated);
+                                translatefunc(wordToBeTranslated.ToLower());
                             }
 
                             break; 

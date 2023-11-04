@@ -47,7 +47,7 @@
             for (int i = 0; i < dictionary.Count; i++)
             {
                 SweEngGloss gloss = dictionary[i];
-                if (gloss.word_swe == swedish && gloss.word_eng == english)
+                if (gloss.word_swe.ToLower() == swedish.ToLower() && gloss.word_eng.ToLower() == english.ToLower())
                     index = i;
             }
             dictionary.RemoveAt(index);

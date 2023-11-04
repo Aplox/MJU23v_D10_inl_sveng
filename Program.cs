@@ -19,16 +19,23 @@
         static void loadfunc(string filename) 
         {
             filename = $"..\\..\\..\\dict\\{filename}";
-            using (StreamReader sr = new StreamReader(filename))
-            {   
-                dictionary = new List<SweEngGloss>(); // Empty it!         
-                string line = sr.ReadLine();
-                while (line != null)
+            try
+            {
+                using (StreamReader sr = new StreamReader(filename))
                 {
-                    SweEngGloss gloss = new SweEngGloss(line.ToLower());
-                    dictionary.Add(gloss);
-                    line = sr.ReadLine();
+                    dictionary = new List<SweEngGloss>(); // Empty it!         
+                    string line = sr.ReadLine();
+                    while (line != null)
+                    {
+                        SweEngGloss gloss = new SweEngGloss(line.ToLower());
+                        dictionary.Add(gloss);
+                        line = sr.ReadLine();
+                    }
                 }
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"File not found: {e.FileName}");
             }
         }
         static void translatefunc(string input) 

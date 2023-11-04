@@ -78,7 +78,11 @@
                 switch (command) 
                 {
                     case "quit": 
-                    { Console.WriteLine("Goodbye!"); break; }
+                    { 
+                            Console.WriteLine("Goodbye!");
+                            Environment.Exit(0); 
+                            break; 
+                    }
                     case "load": 
                     { 
                             if (argument.Length == 2)

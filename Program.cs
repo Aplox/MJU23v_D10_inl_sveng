@@ -40,6 +40,17 @@
                     Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
             }
         }
+        static void deletefunc(string swedish, string english) 
+        {
+            int index = -1;
+            for (int i = 0; i < dictionary.Count; i++)
+            {
+                SweEngGloss gloss = dictionary[i];
+                if (gloss.word_swe == swedish && gloss.word_eng == english)
+                    index = i;
+            }
+            dictionary.RemoveAt(index);
+        }
 
         static void Main(string[] args)
         {
@@ -91,13 +102,8 @@
                 {
                     if (argument.Length == 3)
                     {
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++) {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                                index = i;
-                        }
-                        dictionary.RemoveAt(index);
+                        deletefunc(argument[1], argument[2]);
+  
                     }
                     else if (argument.Length == 1)
                     {
@@ -105,14 +111,7 @@
                         string s = Console.ReadLine();
                         Console.Write("Write word in English: ");
                         string e = Console.ReadLine();
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++)
-                        {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == s && gloss.word_eng == e)
-                                index = i;
-                        }
-                        dictionary.RemoveAt(index);
+                        deletefunc(s, e);
                     }
                 }
                 else if (command == "translate")

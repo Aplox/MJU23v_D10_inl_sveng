@@ -72,7 +72,7 @@
             {
                 Console.Write("> ");
                 string[] argument = Console.ReadLine().Split();
-                string command = argument[0];
+                string command = argument[0].ToLower();
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");

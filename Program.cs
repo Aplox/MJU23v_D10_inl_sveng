@@ -20,8 +20,8 @@
         {
             filename = $"..\\..\\..\\dict\\{filename}";
             using (StreamReader sr = new StreamReader(filename))
-            {
-                dictionary = new List<SweEngGloss>(); // Empty it!
+            {   
+                dictionary = new List<SweEngGloss>(); // Empty it!         
                 string line = sr.ReadLine();
                 while (line != null)
                 {
@@ -64,7 +64,7 @@
             string english = Console.ReadLine();
             return english;
         }
-
+       
         static void Main(string[] args)
         {
             string defaultFile = "sweeng.lis";
@@ -72,7 +72,6 @@
             dictionary = new List<SweEngGloss>();
             do
             {
-                
                 Console.Write("> ");
                 string[] argument = Console.ReadLine().Split();
                 string command = argument[0].ToLower();
@@ -148,6 +147,17 @@
                             }
 
                             break; 
+                    }
+                    case "help": 
+                    {
+                            Console.WriteLine("The command recognised by this app and how they work are as follows:");
+                            Console.WriteLine("quit: Will exit the application");
+                            Console.WriteLine("load: Will load the from file of your choosing or the defaul path. Example: 'load computing.lis'");
+                            Console.WriteLine("list: Will list all of content in the apps current dictionary");
+                            Console.WriteLine("new: Lets you add new words to the dictionary by either typing 'new' and following the promts or by Example: 'new kaka Cookie'");
+                            Console.WriteLine("delete: Lets you delete words from the dictionary by either typing 'delete' and following the promts or by Example: 'delete kaka Cookie'\" ");
+                            Console.WriteLine("translate: Lets you type a word of your choosing in either swedish or english and translates it for you if the translation is the the apps dicitionary. Example 'translate kaka'");
+                            break;
                     }
                     default: { Console.WriteLine($"Unknown command: '{command}'"); break; }
                 }

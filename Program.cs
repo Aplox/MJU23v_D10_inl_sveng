@@ -69,8 +69,10 @@
         {
             string defaultFile = "sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
+            dictionary = new List<SweEngGloss>();
             do
             {
+                
                 Console.Write("> ");
                 string[] argument = Console.ReadLine().Split();
                 string command = argument[0].ToLower();
@@ -98,6 +100,7 @@
                     }
                     case "list": 
                     {
+
                             foreach (SweEngGloss gloss in dictionary)
                             {
                                 Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");

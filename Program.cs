@@ -54,14 +54,14 @@
         static string askSwe() 
         {
             Console.WriteLine("Write word in Swedish: ");
-            string s = Console.ReadLine();
-            return s;
+            string swedish = Console.ReadLine();
+            return swedish;
         }
         static string askEng() 
         {
             Console.Write("Write word in English: ");
-            string e = Console.ReadLine();
-            return e;
+            string english = Console.ReadLine();
+            return english;
         }
 
         static void Main(string[] args)
@@ -128,8 +128,8 @@
                     else if (argument.Length == 1)
                     {
                         Console.WriteLine("Write word to be translated: ");
-                        string s = Console.ReadLine();
-                        translatefunc(s);
+                        string wordToBeTranslated = Console.ReadLine();
+                        translatefunc(wordToBeTranslated);
                     }
                 }
                 else

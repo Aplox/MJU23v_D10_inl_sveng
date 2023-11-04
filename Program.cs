@@ -16,6 +16,21 @@
                 this.word_swe = words[0]; this.word_eng = words[1];
             }
         }
+        static void loadfunc(string filename) 
+        {
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                dictionary = new List<SweEngGloss>(); // Empty it!
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    SweEngGloss gloss = new SweEngGloss(line);
+                    dictionary.Add(gloss);
+                    line = sr.ReadLine();
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
             string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
@@ -33,31 +48,11 @@
                 {
                     if(argument.Length == 2)
                     {
-                        using (StreamReader sr = new StreamReader(argument[1]))
-                        {
-                            dictionary = new List<SweEngGloss>(); // Empty it!
-                            string line = sr.ReadLine();
-                            while (line != null)
-                            {
-                                SweEngGloss gloss = new SweEngGloss(line);
-                                dictionary.Add(gloss);
-                                line = sr.ReadLine();
-                            }
-                        }
+                        loadfunc(argument[1]);
                     }
                     else if(argument.Length == 1)
                     {
-                        using (StreamReader sr = new StreamReader(defaultFile))
-                        {
-                            dictionary = new List<SweEngGloss>(); // Empty it!
-                            string line = sr.ReadLine();
-                            while (line != null)
-                            {
-                                SweEngGloss gloss = new SweEngGloss(line);
-                                dictionary.Add(gloss);
-                                line = sr.ReadLine();
-                            }
-                        }
+                        loadfunc(defaultFile);
                     }
                 }
                 else if (command == "list")

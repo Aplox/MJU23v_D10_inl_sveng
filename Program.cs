@@ -18,6 +18,7 @@
         }
         static void loadfunc(string filename) 
         {
+            filename = $"..\\..\\..\\dict\\{filename}";
             using (StreamReader sr = new StreamReader(filename))
             {
                 dictionary = new List<SweEngGloss>(); // Empty it!
@@ -66,7 +67,7 @@
 
         static void Main(string[] args)
         {
-            string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
+            string defaultFile = "sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
             do
             {

@@ -51,6 +51,18 @@
             }
             dictionary.RemoveAt(index);
         }
+        static string askSwe() 
+        {
+            Console.WriteLine("Write word in Swedish: ");
+            string s = Console.ReadLine();
+            return s;
+        }
+        static string askEng() 
+        {
+            Console.Write("Write word in English: ");
+            string e = Console.ReadLine();
+            return e;
+        }
 
         static void Main(string[] args)
         {
@@ -91,11 +103,7 @@
                     }
                     else if(argument.Length == 1)
                     {
-                        Console.WriteLine("Write word in Swedish: ");
-                        string s = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string e = Console.ReadLine();
-                        dictionary.Add(new SweEngGloss(s, e));
+                        dictionary.Add(new SweEngGloss(askSwe(), askEng()));
                     }
                 }
                 else if (command == "delete")
@@ -107,11 +115,8 @@
                     }
                     else if (argument.Length == 1)
                     {
-                        Console.WriteLine("Write word in Swedish: ");
-                        string s = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string e = Console.ReadLine();
-                        deletefunc(s, e);
+                      
+                        deletefunc(askSwe(), askEng());
                     }
                 }
                 else if (command == "translate")

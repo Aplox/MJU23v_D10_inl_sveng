@@ -56,13 +56,13 @@
         {
             Console.WriteLine("Write word in Swedish: ");
             string swedish = Console.ReadLine();
-            return swedish;
+            return swedish.ToLower();
         }
         static string askEng() 
         {
             Console.Write("Write word in English: ");
             string english = Console.ReadLine();
-            return english;
+            return english.ToLower();
         }
        
         static void Main(string[] args)
@@ -111,7 +111,7 @@
                     {
                             if (argument.Length == 3)
                             {
-                                dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                                dictionary.Add(new SweEngGloss(argument[1].ToLower(), argument[2].ToLower()));
                             }
                             else if (argument.Length == 1)
                             {

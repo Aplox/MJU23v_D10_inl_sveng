@@ -73,68 +73,75 @@
                 Console.Write("> ");
                 string[] argument = Console.ReadLine().Split();
                 string command = argument[0].ToLower();
-                if (command == "quit")
+
+                switch (command) 
                 {
-                    Console.WriteLine("Goodbye!");
-                }
-                else if (command == "load")
-                {
-                    if(argument.Length == 2)
-                    {
-                        loadfunc(argument[1]);
+                    case "quit": 
+                    { Console.WriteLine("Goodbye!"); break; }
+                    case "load": 
+                    { 
+                            if (argument.Length == 2)
+                            {
+                                loadfunc(argument[1]);
+                            } 
+                            else if (argument.Length == 1)
+                            { 
+                                loadfunc(defaultFile); 
+                            }
+                            
+                            break; 
                     }
-                    else if(argument.Length == 1)
+                    case "list": 
                     {
-                        loadfunc(defaultFile);
+                            foreach (SweEngGloss gloss in dictionary)
+                            {
+                                Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                            }
+
+                            break; 
                     }
-                }
-                else if (command == "list")
-                {
-                    foreach(SweEngGloss gloss in dictionary)
+                    case "new": 
                     {
-                        Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                            if (argument.Length == 3)
+                            {
+                                dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                            }
+                            else if (argument.Length == 1)
+                            {
+                                dictionary.Add(new SweEngGloss(askSwe(), askEng()));
+                            }  
+
+                            break; 
                     }
-                }
-                else if (command == "new")
-                {
-                    if (argument.Length == 3)
+                    case "delete": 
                     {
-                        dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                            if (argument.Length == 3)
+                            {
+                                deletefunc(argument[1], argument[2]);
+                            }
+                            else if (argument.Length == 1)
+                            {
+                                deletefunc(askSwe(), askEng());
+                            }
+
+                            break; 
                     }
-                    else if(argument.Length == 1)
+                    case "translate": 
                     {
-                        dictionary.Add(new SweEngGloss(askSwe(), askEng()));
+                            if (argument.Length == 2)
+                            {
+                                translatefunc(argument[1]);
+                            }
+                            else if (argument.Length == 1)
+                            {
+                                Console.WriteLine("Write word to be translated: ");
+                                string wordToBeTranslated = Console.ReadLine();
+                                translatefunc(wordToBeTranslated);
+                            }
+
+                            break; 
                     }
-                }
-                else if (command == "delete")
-                {
-                    if (argument.Length == 3)
-                    {
-                        deletefunc(argument[1], argument[2]);
-  
-                    }
-                    else if (argument.Length == 1)
-                    {
-                      
-                        deletefunc(askSwe(), askEng());
-                    }
-                }
-                else if (command == "translate")
-                {
-                    if (argument.Length == 2)
-                    {
-                        translatefunc(argument[1]);
-                    }
-                    else if (argument.Length == 1)
-                    {
-                        Console.WriteLine("Write word to be translated: ");
-                        string wordToBeTranslated = Console.ReadLine();
-                        translatefunc(wordToBeTranslated);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"Unknown command: '{command}'");
+                    default: { Console.WriteLine($"Unknown command: '{command}'"); break; }
                 }
             }
             while (true);
